@@ -3,5 +3,8 @@
 }
 
 h1 {
-    font-size: 150px;
+    font-size: 10em;
+}
+h3 {
+    font-size: 6em;
 }
