@@ -1,24 +1,20 @@
 import * as React from 'react';
-import { BrowserRouter, Redirect, Route } from 'react-router-dom';
-import App from './App'
-import FirstComponent from './components/FirstComponent';
-import { Header } from './components/Header';
-import SecondComponent from './components/SecondComponent';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import App from './App';
+import Landing from './components/Landing';
+import NotFound from './components/NotFound';
+
 import './css/styles.css';
 
 export const AppRouter: React.StatelessComponent<{}> = () => {
     return (
 
         <BrowserRouter>
-            <div>
-                <Header />
-                <main>
-                    <Route exact={true} path="/" component={App} />
-                    <Route path="/FirstComponent" component={FirstComponent} />
-                    <Route path="/SecondComponent" component={SecondComponent} />
-                    <Redirect from='*' to='/' />
-                </main>
-            </div>
+            <Switch>
+                <Route exact={true} path="/" component={Landing}/>
+                <Route path="/user/:userID" component={App}/>
+                <Route component={NotFound}/>
+            </Switch>
         </BrowserRouter>
 
     );

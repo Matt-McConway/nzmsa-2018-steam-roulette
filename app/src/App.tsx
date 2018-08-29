@@ -1,19 +1,36 @@
 import * as React from 'react';
-import logo from './assets/images/logo.png';
+
+
 import './css/App.css';
 
+interface IState {
+  username: string,
+  results: any,
+}
 
-export default class App extends React.Component<{}> {
+
+export default class App extends React.Component<{}, IState> {
+
+  
+  constructor(props: any){
+    super(props);
+
+    this.state = {
+      results: "",
+      username: ""
+    };
+  }
+
+  public componentDidMount(){
+    console.log(this.props.match.history.);
+}
+
+
+  
+
   public render() {
     return (
-      <div className="container-fluid">
-      <div className="centreText">
-        {/* React components must have a wrapper node/element */}
-        <h1>Steam Roulette</h1>
-        <img src={logo} height="512px" width="512px"/>
-        <h3>What will you play today?</h3>
-      </div>
-    </div>
+      <h1>{this.state.username}</h1>
     );
   }
 }
