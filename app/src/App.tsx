@@ -15,7 +15,10 @@ const history = createBrowserHistory().location.pathname.slice(6); // This is so
 */
 
 interface IState {
-  history: {}
+  history: {},
+  game: string,
+  games: [],
+  gamesCount: number
 }
 
 export default class App extends React.Component<{}, IState> {
@@ -25,13 +28,23 @@ export default class App extends React.Component<{}, IState> {
     super(props);
 
     this.state = {
-      history: {history}.history
+      history: {history}.history,
+      game: "",
+      games: [],
+      gamesCount: 0
     }
   }
 
   public componentDidMount(){
     this.setState({history: createBrowserHistory().location.pathname.slice(6)})
-    console.log(this.state.history);
+    fetch(`http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=DAD089B9DA1A8114E0D7C3B6F07DCE5C&steamid=${this.state.history}&format=json`).then((response) => {return response.json();}).then((response) => {
+      this.setState({games: response.response.games, gamesCount: response.response.game_count});
+
+      this.setState({game: this.state.games[Math.floor(Math.random() * this.state.gamesCount)]});
+      console.log(this.state.games); 
+      console.log(this.state.game);
+    });
+    // console.log(this.state.gamesCount);
 }
 
 
