@@ -23,7 +23,6 @@ export default class Landing extends React.Component<IProps> {
         event.preventDefault();
         if (this.usernameInput.current){
             const uid = this.usernameInput.current.value;
-            console.log(uid);
             this.props.history.push(`/user/${uid}`)
         }
     
@@ -38,7 +37,7 @@ export default class Landing extends React.Component<IProps> {
                 <img src={logo} height="512px" width="512px"/>
                 <form onSubmit={this.onSubmit}>
                     <h4>Enter your steam username: </h4>
-                    <input type="text" required={true} placeholder="Username" defaultValue="Mirkea" name="username" ref={this.usernameInput}/>
+                    <input type="text" required={true} placeholder="Username" defaultValue="76561198050724109" name="username" ref={this.usernameInput}/>
                     <button type="submit">Submit</button>
                 </form>
             </div>

@@ -1,28 +1,37 @@
+import { createBrowserHistory } from 'history';
 import * as React from 'react';
 
 
 import './css/App.css';
 
-interface IState {
-  username: string,
-  results: any,
-}
+const history = createBrowserHistory().location.pathname.slice(6); // This is so damn hacky, will fix it later!
 
+/*
+  TSLINT BACKUP "extends": ["tslint:recommended", "tslint-react", "tslint-config-prettier"],
+  "rules": {
+    "no-console": false
+  },
+
+*/
+
+interface IState {
+  history: {}
+}
 
 export default class App extends React.Component<{}, IState> {
 
   
-  constructor(props: any){
+  constructor(props: {}){
     super(props);
 
     this.state = {
-      results: "",
-      username: ""
-    };
+      history: {history}.history
+    }
   }
 
   public componentDidMount(){
-    console.log(this.props.match.history.);
+    this.setState({history: createBrowserHistory().location.pathname.slice(6)})
+    console.log(this.state.history);
 }
 
 
@@ -30,7 +39,7 @@ export default class App extends React.Component<{}, IState> {
 
   public render() {
     return (
-      <h1>{this.state.username}</h1>
+      <h1>{this.state.history}</h1>
     );
   }
 }
