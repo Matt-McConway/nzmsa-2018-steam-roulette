@@ -16,7 +16,7 @@ const history = createBrowserHistory().location.pathname.slice(6); // This is so
 
 interface IState {
   history: {},
-  game: string,
+  game: {appid: number, has_community_visible_stats: boolean, img_icon_url: string, img_logo_url: string, name: string, playtime_forever: number},
   games: [],
   gamesCount: number
 }
@@ -29,7 +29,7 @@ export default class App extends React.Component<{}, IState> {
 
     this.state = {
       history: {history}.history,
-      game: "",
+      game: {appid: 1, has_community_visible_stats: true, img_icon_url:"404", img_logo_url:"404", name:"", playtime_forever: 0},
       games: [],
       gamesCount: 0
     }
@@ -42,7 +42,7 @@ export default class App extends React.Component<{}, IState> {
 
       this.setState({game: this.state.games[Math.floor(Math.random() * this.state.gamesCount)]});
       console.log(this.state.games); 
-      console.log(this.state.game);
+      console.log(this.state.game.name);
       console.log(response);
     });
     // console.log(this.state.gamesCount);
@@ -53,7 +53,7 @@ export default class App extends React.Component<{}, IState> {
 
   public render() {
     return (
-      <h1>{this.state.history}</h1>
+      <h1>{this.state.game.name}</h1>
     );
   }
 }
