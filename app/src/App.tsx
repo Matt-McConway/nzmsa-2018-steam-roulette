@@ -37,12 +37,13 @@ export default class App extends React.Component<{}, IState> {
 
   public componentDidMount(){
     this.setState({history: createBrowserHistory().location.pathname.slice(6)})
-    fetch(`http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=DAD089B9DA1A8114E0D7C3B6F07DCE5C&steamid=${this.state.history}&format=json`).then((response) => {return response.json();}).then((response) => {
+    fetch(`http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=DAD089B9DA1A8114E0D7C3B6F07DCE5C&steamid=${this.state.history}&include_appinfo=1&include_played_free_games=1&format=json`).then((response) => {return response.json();}).then((response) => {
       this.setState({games: response.response.games, gamesCount: response.response.game_count});
 
       this.setState({game: this.state.games[Math.floor(Math.random() * this.state.gamesCount)]});
       console.log(this.state.games); 
       console.log(this.state.game);
+      console.log(response);
     });
     // console.log(this.state.gamesCount);
 }
