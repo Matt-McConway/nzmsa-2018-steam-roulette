@@ -20,7 +20,7 @@ export default class Landing extends React.Component<IProps> {
     
     
     public onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
+        // event.preventDefault(); Removed this to ensure that the randomized game is displayed on first submission of UID
         if (this.usernameInput.current){
             const uid = this.usernameInput.current.value;
             this.props.history.push(`/user/${uid}`)
