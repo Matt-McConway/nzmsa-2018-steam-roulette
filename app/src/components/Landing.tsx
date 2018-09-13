@@ -1,6 +1,8 @@
 import { History } from 'history';
 import * as React from 'react';
+import Button from '@material-ui/core/Button';
 
+import '../css/App.css';
 import logo from '../assets/images/logo.png';
 
 
@@ -20,7 +22,7 @@ export default class Landing extends React.Component<IProps> {
     
     
     public onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        // event.preventDefault(); Removed this to ensure that the randomized game is displayed on first submission of UID
+        event.preventDefault(); // Removed this to ensure that the randomized game is displayed on first submission of UID
         if (this.usernameInput.current){
             const uid = this.usernameInput.current.value;
             this.props.history.push(`/user/${uid}`)
@@ -38,7 +40,8 @@ export default class Landing extends React.Component<IProps> {
                 <form onSubmit={this.onSubmit}>
                     <h4>Enter your steam username: </h4>
                     <input type="text" required={true} placeholder="Username" defaultValue="76561198050724109" name="username" ref={this.usernameInput}/>
-                    <button type="submit">Submit</button>
+                    <br />
+                    <Button type="submit" variant="contained" color="primary" >Submit</Button>
                 </form>
             </div>
         </div>

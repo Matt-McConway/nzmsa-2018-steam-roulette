@@ -4,7 +4,7 @@ import * as React from 'react';
 
 import './css/App.css';
 
-const history = createBrowserHistory().location.pathname.slice(6); // This is so damn hacky, will fix it later!
+
 
 /*
   TSLINT BACKUP "extends": ["tslint:recommended", "tslint-react", "tslint-config-prettier"],
@@ -26,7 +26,7 @@ export default class App extends React.Component<{}, IState> {
   
   constructor(props: {}){
     super(props);
-
+    const history = createBrowserHistory().location.pathname.slice(6); // This is so damn hacky, will fix it later!
     this.state = {
       history: {history}.history,
       game: {appid: 1, has_community_visible_stats: true, img_icon_url:"404", img_logo_url:"404", name:"", playtime_forever: 0},
@@ -44,6 +44,8 @@ export default class App extends React.Component<{}, IState> {
       console.log(this.state.games); 
       console.log(this.state.game.name);
       console.log(response);
+      console.log(this.state.game);
+      
     });
     // console.log(this.state.gamesCount);
 }
@@ -53,7 +55,10 @@ export default class App extends React.Component<{}, IState> {
 
   public render() {
     return (
-      <h1>{this.state.game.name}</h1>
+      <div className="App">
+        <h1>{this.state.game.name}</h1>
+      </div>
+      
     );
   }
 }
