@@ -1,9 +1,9 @@
 import { createBrowserHistory } from 'history';
 import * as React from 'react';
-
+import { Link } from 'react-router-dom'
+import Button from '@material-ui/core/Button';
 
 import './css/App.css';
-
 
 
 /*
@@ -29,7 +29,7 @@ export default class App extends React.Component<{}, IState> {
     const history = createBrowserHistory().location.pathname.slice(6); // This is so damn hacky, will fix it later!
     this.state = {
       history: {history}.history,
-      game: {appid: 1, has_community_visible_stats: true, img_icon_url:"404", img_logo_url:"404", name:"", playtime_forever: 0},
+      game: {appid: 1, has_community_visible_stats: true, img_icon_url:"", img_logo_url:"", name:"", playtime_forever: 0},
       games: [],
       gamesCount: 0
     }
@@ -51,12 +51,21 @@ export default class App extends React.Component<{}, IState> {
 }
 
 
-  
+  public refreshPage = () => {
+    window.location.reload();
+  }
 
   public render() {
     return (
       <div className="App">
-        <h1>{this.state.game.name}</h1>
+        <img height="200px" width="600px" src={`http://media.steampowered.com/steamcommunity/public/images/apps/${this.state.game.appid}/${this.state.game.img_logo_url}.jpg`} alt="Game Icon" />
+        <h2>You rolled: {this.state.game.name}</h2>
+        <br />
+        <h2>Play time: {this.state.game.playtime_forever} minutes.</h2>
+        <Button href={`https://store.steampowered.com/app/${this.state.game.appid}`} variant="contained" color="primary">Visit Steam Store Page</Button>
+        <Button onClick={this.refreshPage} variant="contained" color="primary">Reroll</Button>
+        <br />
+        <Button component={Link} {...{to: "/"} as any} variant="contained" color="primary">Home</Button>
       </div>
       
     );
