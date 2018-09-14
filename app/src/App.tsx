@@ -37,7 +37,7 @@ export default class App extends React.Component<{}, IState> {
 
   public componentDidMount(){
     this.setState({history: createBrowserHistory().location.pathname.slice(6)})
-    fetch(`http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=DAD089B9DA1A8114E0D7C3B6F07DCE5C&steamid=${this.state.history}&include_appinfo=1&include_played_free_games=1&format=json`).then((response) => {return response.json();}).then((response) => {
+    fetch(`https://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=DAD089B9DA1A8114E0D7C3B6F07DCE5C&steamid=${this.state.history}&include_appinfo=1&include_played_free_games=1&format=json`).then((response) => {return response.json();}).then((response) => {
       this.setState({games: response.response.games, gamesCount: response.response.game_count});
 
       this.setState({game: this.state.games[Math.floor(Math.random() * this.state.gamesCount)]});
@@ -58,7 +58,7 @@ export default class App extends React.Component<{}, IState> {
   public render() {
     return (
       <div className="App">
-        <img height="200px" width="600px" src={`http://media.steampowered.com/steamcommunity/public/images/apps/${this.state.game.appid}/${this.state.game.img_logo_url}.jpg`} alt="Game Icon" />
+        
         <h2>You rolled: {this.state.game.name}</h2>
         <br />
         <h2>Play time: {this.state.game.playtime_forever} minutes.</h2>
