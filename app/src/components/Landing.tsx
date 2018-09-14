@@ -38,10 +38,12 @@ export default class Landing extends React.Component<IProps> {
                 <h3>What will you play today?</h3>
                 <img src={logo} height="512px" width="512px"/>
                 <form onSubmit={this.onSubmit}>
-                    <h4>Enter your steam username: </h4>
+                    <h4>Enter your 64bit steam id: </h4>
+                    <p>Unsure what yours is? Check <a href="https://steamid.io/" target="_blank" >here</a></p>
                     <input type="text" required={true} placeholder="Username" defaultValue="76561198050724109" name="username" ref={this.usernameInput}/>
                     <br />
                     <Button type="submit" variant="contained" color="primary" >Submit</Button>
+                    
                 </form>
             </div>
         </div>
